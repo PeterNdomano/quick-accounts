@@ -16,8 +16,29 @@ class User {
     );
 
     startSession();
-    if(isset($_SESSION['qaUserId'])){
-
+    if(isset($_SESSION['qaUserId'])) {
+      $userId = htmlspecialchars($_SESSION['qaUserId']);
+      $userData = getUserData($userId);
+      if(isset($userData['token'])) {
+        if($userData['token'] === $_SESSION['qaUserToken']) {
+          $ffo = array(
+            'status' => 1,
+            'msg' => 'Welcome Back',
+          );
+        }
+        else {
+          $ffo = array(
+            'status' => 0,
+            'msg' => 'Login please',
+          );
+        }
+      }
+      else {
+        $ffo = array(
+          'status' => 0,
+          'msg' => 'Login please',
+        );
+      }
     }
     else{
       $ffo = array(
