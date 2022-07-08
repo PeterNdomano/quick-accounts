@@ -9,7 +9,31 @@ class User {
     $this->id = $id;
   }
 
-  public static function isLoggedIn(){
+  public static function checkRole() {
+    $ffo = array(
+      'status' => 0,
+      'msg' => 'Unknown error',
+    );
+    $isLoggedIn = self::isLoggedIn();
+    if($isLoggedIn['status'] === 1) {
+      $userData = getUserData(htmlspecialchars($_SESSION['qaUserId']));
+      $ffo = array(
+        'status' => 1,
+        'msg' => 'Unknown error',
+        'data' => $userData['role'],
+      );
+    }
+    else {
+      $ffo = array(
+        'status' => 0,
+        'msg' => 'Login please',
+      );
+    }
+
+    return $ffo;
+  }
+
+  public static function isLoggedIn() {
     $ffo = array(
       'status' => 0,
       'msg' => 'Unknown error',
