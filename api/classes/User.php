@@ -9,6 +9,21 @@ class User {
     $this->id = $id;
   }
 
+  public static function register($username, $password) {
+    global $conn;
+    $ffo = array(
+      'status' => 0,
+      'msg' => 'Unknown error',
+    );
+    $userData = getUserDataByName($username);
+    if(is_null($userData)) {
+
+    }
+    else {
+
+    }
+  }
+
   public static function checkRole() {
     $ffo = array(
       'status' => 0,
