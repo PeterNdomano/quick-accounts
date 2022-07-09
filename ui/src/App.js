@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { checkLogin } from './Helper';
 import Login from './components/Login';
 
-function App() {
+export default function App() {
   const [ loginStatus, setLoginStatus ] = useState(0);
 
   useState(() => {
@@ -21,20 +21,18 @@ function App() {
 
 
   return (
-    <div className="App">
-      {
-        (loginStatus === 1) ?
-        <>
-          <h1>Logged In</h1>
-          <h1>Logged In</h1>
-        </>
-        :
-        <>
-          <Login/>
-        </>
-      }
-    </div>
+    <>
+    {
+      (loginStatus === 1) ?
+      <div className="App">
+
+      </div>
+      :
+      <>
+        <Login/>
+      </>
+    }
+    </>
+
   );
 }
-
-export default App;
