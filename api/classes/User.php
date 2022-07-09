@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/../conn.php';
-require_once dirname(__FILE__).'/../function.php';
+require_once dirname(__FILE__).'/../functions.php';
 
 class User {
   public $id;
@@ -51,8 +51,8 @@ class User {
     if(is_null($userData)) {
       $hash = password_hash($password, PASSWORD_DEFAULT);
       $token = password_hash($username, PASSWORD_DEFAULT);
-      $sql = $conn->prepare("INSERT INTO users (username, password, token, role) VALUES ?, ?, ?, ?");
-      $sql->prepare('ssss', $username, $password, $token, $role);
+      $sql = $conn->prepare("INSERT INTO users (username, password, token, role) VALUES (?, ?, ?, ?)");
+      $sql->bind_param('ssss', $username, $hash, $token, $role);
       $sql->execute();
       $userData = getUserData($sql->insert_id);
       startSession();

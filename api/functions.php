@@ -43,6 +43,7 @@ function loadClass($class){
 spl_autoload_register('loadClass');
 
 function getUserData($id) {
+  global $conn;
   $sql = $conn->prepare("SELECT * FROM users WHERE id = ?");
   $sql->bind_param('s', $id);
   $sql->execute();
@@ -58,6 +59,7 @@ function getUserData($id) {
 
 
 function getUserDataByName($id) {
+  global $conn;
   $sql = $conn->prepare("SELECT * FROM users WHERE username = ?");
   $sql->bind_param('s', $id);
   $sql->execute();

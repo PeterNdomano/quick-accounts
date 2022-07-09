@@ -6,6 +6,7 @@ export const MAIN_URL = 'github_projects/quick-accounts/api/';
 export function checkLogin(){
   return new Promise((resolved, rejected) => {
     $.post(MAIN_URL+'check_login.php', {}, (data, status) => {
+      //console.log(data);
       if(status === 'success') {
         let response = JSON.parse(data);
         //this is exception, here 0 means not logged in and 1 means logged in
@@ -19,7 +20,18 @@ export function checkLogin(){
 }
 
 export async function checkUserRole() {
-
+  return new Promise((resolved, rejected) => {
+    $.post(MAIN_URL+'check_role.php', {}, (data, status) => {
+      //console.log(data);
+      if(status === 'success') {
+        let response = JSON.parse(data);
+        resolved(response);
+      }
+      else {
+        rejected("Network error");
+      }
+    });
+  });
 }
 
 export function getInlineLoader() {

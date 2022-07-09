@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { checkLogin } from './Helper';
+import { checkLogin, tellUser } from './Helper';
 import Login from './components/Login';
 import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const [ loginStatus, setLoginStatus ] = useState(0);
-
-  useState(() => {
-    //re-render
-  }, [loginStatus]);
 
   let getLoginStatus = async () => {
     await checkLogin().then(response => {
@@ -16,9 +12,14 @@ export default function App() {
       setLoginStatus(response.status);
     }, error => {
       //error occured
+      telluser(error);
     });
   }
 
+  useState(async () => {
+    //re-render
+    await getLoginStatus();
+  }, []);
 
   return (
     <>

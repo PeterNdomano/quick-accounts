@@ -16,6 +16,7 @@ export default function Main() {
           setLoading(true);
           $.post(MAIN_URL+'login.php', { username, password }, (data, status) => {
             setLoading(false);
+            //console.log(data);
             if(status === 'success') {
               let response = JSON.parse(data);
               if(response.status === 1) {
