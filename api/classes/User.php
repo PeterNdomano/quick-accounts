@@ -9,7 +9,39 @@ class User {
     $this->id = $id;
   }
 
-  public static function register($username, $password) {
+  public static function login($username, $password) {
+    $userData = getUserDataByName($username);
+    $ffo = array(
+      'status' => 0,
+      'msg' => 'Unknown error',
+    );
+    if(!is_null($userData)) {
+      if(password_verify($password, $userData['password'])) {
+        startSession();
+        $_SESSION['qaUserId'] = $userData['id'];
+        $_SESSION['qaUserToken'] = $userData['token'];
+        $ffo = array(
+          'status' => 1,
+          'msg' => 'Welcome back',
+        );
+      }
+      else {
+        $ffo = array(
+          'status' => 0,
+          'msg' => 'Wrong details',
+        );
+      }
+    }
+    else {
+      $ffo = array(
+        'status' => 0,
+        'msg' => 'Wrong details',
+      );
+    }
+    return $ffo;
+  }
+
+  public static function register($username, $password, $role = 'accountant') {
     global $conn;
     $ffo = array(
       'status' => 0,
@@ -17,11 +49,28 @@ class User {
     );
     $userData = getUserDataByName($username);
     if(is_null($userData)) {
-
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+      $token = password_hash($username, PASSWORD_DEFAULT);
+      $sql = $conn->prepare("INSERT INTO users (username, password, token, role) VALUES ?, ?, ?, ?");
+      $sql->prepare('ssss', $username, $password, $token, $role);
+      $sql->execute();
+      $userData = getUserData($sql->insert_id);
+      startSession();
+      $_SESSION['qaUserId'] = $userData['id'];
+      $_SESSION['qaUserToken'] = $userData['token'];
+      $ffo = array(
+        'status' => 1,
+        'msg' => 'User registered',
+      );
     }
     else {
-
+      $ffo = array(
+        'status' => 0,
+        'msg' => 'Username already exists',
+      );
     }
+
+    return $ffo;
   }
 
   public static function checkRole() {
