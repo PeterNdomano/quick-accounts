@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { toast } from 'react-toastify';
+import { TailSpin } from 'react-loader-spinner';
 
 export const MAIN_URL = 'github_projects/quick-accounts/api/';
 export function checkLogin(){
@@ -16,6 +18,53 @@ export function checkLogin(){
   });
 }
 
-export async function checkUserRole(){
+export async function checkUserRole() {
+
+}
+
+export function getInlineLoader() {
+  return (
+    <TailSpin
+      color="var(--light)"
+      width="30px"
+      height="30px"
+    />
+  );
+}
+
+export function tellUser(msg, id = "warning"){
+  if(id === "success"){
+    toast.success(msg, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  else if(id === "warning"){
+    toast.warn(msg, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  else{
+    toast(msg, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
 }

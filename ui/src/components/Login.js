@@ -1,14 +1,43 @@
 import React, { useState } from 'react';
 import $ from 'jquery';
-import { tellUser } from '../Helper';
+import { tellUser, MAIN_URL, getInlineLoader } from '../Helper';
 
 export default function Main() {
 
+  let [loading, setLoading] = useState(false);
+
   let login = (e) => {
     e.preventDefault();
-    let username = $('#username').val();
-    let password = $('#password').val();
-
+    if(!loading) {
+      let username = $('#username').val();
+      let password = $('#password').val();
+      if(username.trim().length > 0) {
+        if(password.trim().length > 0) {
+          setLoading(true);
+          $.post(MAIN_URL+'login.php', { username, password }, (data, status) => {
+            setLoading(false);
+            if(status === 'success') {
+              let response = JSON.parse(data);
+              if(response.status === 1) {
+                window.location.reload();
+              }
+              else {
+                tellUser(response.msg);
+              }
+            }
+            else {
+              tellUser('Network error');
+            }
+          });
+        }
+        else {
+          tellUser('Invalid password');
+        }
+      }
+      else {
+        tellUser('Invalid username');
+      }
+    }
   }
 
   return (
@@ -28,7 +57,13 @@ export default function Main() {
                 <input className="form-control" type="password" id="password"/>
               </div>
               <div className="form-group text-right">
-                <button className="btn btn-dark">Login</button>
+                <button className="btn btn-dark">
+                {
+                  (loading) ?
+                  getInlineLoader() :
+                  'Login'
+                }
+                </button>
               </div>
             </form>
           </div>
