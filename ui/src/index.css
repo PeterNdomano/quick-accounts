@@ -2,6 +2,13 @@
   /* colors */
 
   /* dimens */
+  --topBarHeight: 70px;
+  --navMenuWidth: 350px;
+
+  --ultraHighIndex: 1100;
+  --highIndex: 1000;
+  --midIndex: 100;
+  --lowIndex: 0;
 }
 
 body,
@@ -32,4 +39,27 @@ html {
 .Login form {
   width: 100%;
   transform: translateY(30vh);
+}
+
+.Nav {
+
+}
+
+.Nav .topBar {
+  position: fixed;
+  width: calc( 100vw - var(--navMenuWidth) );
+  z-index: var(--ultraHighIndex);
+  height: var(--topBarHeight);
+  background: var(--dark);
+  top: 0;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .Nav .topBar {
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
 }
