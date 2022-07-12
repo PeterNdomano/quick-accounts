@@ -11,6 +11,8 @@
   --lowIndex: 0;
 }
 
+/* ------ General Styling ------- */
+
 body,
 html {
 
@@ -20,13 +22,17 @@ html {
 
 }
 
-/* App Design*/
+* {
+  transition: all .2s ease;
+}
+
+/* --------------App Design-----------*/
 
 .App {
   width: 100%;
 }
 
-/* Login Design*/
+/* ----------Login Design---------*/
 .Login {
   width: 100vw;
 }
@@ -41,18 +47,11 @@ html {
   transform: translateY(30vh);
 }
 
+
+/* -----------Nav Designs----------- */
+
 .Nav {
 
-}
-
-.Nav .topBar {
-  position: fixed;
-  width: calc( 100vw - var(--navMenuWidth) );
-  z-index: var(--ultraHighIndex);
-  height: var(--topBarHeight);
-  background: var(--dark);
-  top: 0;
-  right: 0;
 }
 
 .Nav .navMenu {
@@ -66,19 +65,41 @@ html {
   bottom: 0;
 }
 
-/* integrating menu behaviours */
+/* integrating navmenu behaviours */
 .Nav .navMenu[data-menu="default"] {
-
+  left: 0;
 }
 
 .Nav .navMenu[data-menu="opened"] {
-
+  left: 0;
 }
 
 .Nav .navMenu[data-menu="closed"] {
-
+  left: -500px;
 }
 
+
+.Nav .topBar {
+  position: fixed;
+  width: calc( 100vw - var(--navMenuWidth) );
+  z-index: var(--ultraHighIndex);
+  height: var(--topBarHeight);
+  background: var(--dark);
+  top: 0;
+  right: 0;
+}
+
+.Nav .topBar[data-menu="default"] {
+  width: calc( 100vw - var(--navMenuWidth) );
+}
+
+.Nav .topBar[data-menu="opened"] {
+  width: calc( 100vw - var(--navMenuWidth) );
+}
+
+.Nav .topBar[data-menu="closed"] {
+  width: 100vw;
+}
 
 .Nav .topBar .menuIcon {
   margin: 0 !important;
@@ -104,11 +125,35 @@ html {
     right: 0;
   }
 
+  .Nav .topBar[data-menu="default"],
+  .Nav .topBar[data-menu="opened"],
+  .Nav .topBar[data-menu="closed"] {
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+  }
+
+  .Nav .topBar[data-menu="opened"] {
+    z-index: var(--highIndex);
+  }
+
   .Nav .navMenu {
-    width: 0;
+    left: -500px;
+  }
+
+  .Nav .navMenu[data-menu="opened"] {
+    width: var(--navMenuWidth);
+    z-index: var(--ultraHighIndex);
+  }
+
+  .Nav .navMenu[data-menu="default"],
+  .Nav .navMenu[data-menu="closed"] {
+    left: -500px;
   }
 }
 
+/*-----------------MainBody Designs -----------------*/
 .MainBody {
   margin: 0;
   margin-left: var(--navMenuWidth);
@@ -117,8 +162,32 @@ html {
   width: calc( 100vw - var(--navMenuWidth) );
 }
 
+/* integrating navmenu behaviours */
+.MainBody[data-menu="default"] {
+  margin-left: var(--navMenuWidth);
+  width: calc( 100vw - var(--navMenuWidth) );
+}
+
+.MainBody[data-menu="opened"] {
+  margin-left: var(--navMenuWidth);
+  width: calc( 100vw - var(--navMenuWidth) );
+}
+
+.MainBody[data-menu="closed"] {
+  margin-left: 0;
+  width: 100vw;
+}
+
+
 @media (max-width: 768px) {
   .MainBody {
+    width: 100%;
+    margin: 0;
+  }
+
+  .MainBody[data-menu="default"],
+  .MainBody[data-menu="opened"],
+  .MainBody[data-menu="closed"] {
     width: 100%;
     margin: 0;
   }
