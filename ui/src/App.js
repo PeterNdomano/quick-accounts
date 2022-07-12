@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { checkLogin, tellUser } from './Helper';
 import Login from './components/Login';
 import { ToastContainer } from 'react-toastify';
+import Nav from './components/Nav';
+import MainBody from './components/MainBody';
 
 export default function App() {
   const [ loginStatus, setLoginStatus ] = useState(0);
@@ -12,7 +14,7 @@ export default function App() {
       setLoginStatus(response.status);
     }, error => {
       //error occured
-      telluser(error);
+      tellUser(error);
     });
   }
 
@@ -29,7 +31,8 @@ export default function App() {
       {
         (loginStatus === 1) ?
         <div className="App">
-
+          <Nav/>
+          <MainBody/>
         </div>
         :
         <>
