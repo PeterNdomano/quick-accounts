@@ -55,12 +55,38 @@ html {
   right: 0;
 }
 
+.Nav .navMenu {
+  position: fixed;
+  width: var(--navMenuWidth);
+  z-index: var(--ultraHighIndex);
+  height: 100%;
+  background: var(--success);
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+/* integrating menu behaviours */
+.Nav .navMenu[data-menu="default"] {
+
+}
+
+.Nav .navMenu[data-menu="opened"] {
+
+}
+
+.Nav .navMenu[data-menu="closed"] {
+
+}
+
+
 .Nav .topBar .menuIcon {
   margin: 0 !important;
   margin-left: 20px !important;
   width: 30px;
   height: 30px;
   color: var(--light);
+  cursor: pointer;
 }
 
 .Nav .topBar .topTitle {
@@ -76,5 +102,24 @@ html {
     left: 0;
     top: 0;
     right: 0;
+  }
+
+  .Nav .navMenu {
+    width: 0;
+  }
+}
+
+.MainBody {
+  margin: 0;
+  margin-left: var(--navMenuWidth);
+  padding: 10px;
+  padding-top: calc( var(--topBarHeight) + 10px );
+  width: calc( 100vw - var(--navMenuWidth) );
+}
+
+@media (max-width: 768px) {
+  .MainBody {
+    width: 100%;
+    margin: 0;
   }
 }
