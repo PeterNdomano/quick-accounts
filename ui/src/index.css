@@ -55,6 +55,21 @@ html {
   right: 0;
 }
 
+.Nav .topBar .menuIcon {
+  margin: 0 !important;
+  margin-left: 20px !important;
+  width: 30px;
+  height: 30px;
+  color: var(--light);
+}
+
+.Nav .topBar .topTitle {
+  margin: 0 !important;
+  margin-left: 20px !important;
+  color: var(--light);
+}
+
+
 @media (max-width: 768px) {
   .Nav .topBar {
     width: 100%;
