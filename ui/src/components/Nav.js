@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   MdMenu,
   MdOutlineMoney,
@@ -66,6 +66,10 @@ export default function Main(){
     document.getElementById(item).dataset['selected'] = "true";
     navApi.setNavItem(item);
   }
+
+  useEffect(() => {
+    navSelected(navApi.navItem);
+  }, [])
   return (
     <div className="Nav">
       <div className="navCover" onClick={closeMenu} data-menu="default"></div>

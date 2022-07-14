@@ -80,3 +80,13 @@ export function tellUser(msg, id = "warning"){
   }
 
 }
+
+export function isMobile() {
+  let screenWidth = window.innerWidth;
+  if(screenWidth <= 768) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
