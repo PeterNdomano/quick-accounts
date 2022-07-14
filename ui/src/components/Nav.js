@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdMenu } from 'react-icons/md';
+import { MdMenu, MdHome } from 'react-icons/md';
 
 
 export default function Main(){
@@ -8,12 +8,14 @@ export default function Main(){
     document.getElementsByClassName('topBar')[0].dataset['menu'] = 'opened';
     document.getElementsByClassName('navMenu')[0].dataset['menu'] = 'opened';
     document.getElementsByClassName('MainBody')[0].dataset['menu'] = 'opened';
+    document.getElementsByClassName('navCover')[0].dataset['menu'] = 'opened';
   }
 
   let closeMenu = () => {
     document.getElementsByClassName('topBar')[0].dataset['menu'] = 'closed';
     document.getElementsByClassName('navMenu')[0].dataset['menu'] = 'closed';
     document.getElementsByClassName('MainBody')[0].dataset['menu'] = 'closed';
+    document.getElementsByClassName('navCover')[0].dataset['menu'] = 'closed';
   }
   let toggleMenu = () => {
     let ind = document.getElementsByClassName('topBar')[0].dataset['menu'];
@@ -30,11 +32,19 @@ export default function Main(){
   }
   return (
     <div className="Nav">
+      <div className="navCover" onClick={closeMenu} data-menu="default"></div>
       <div className="topBar d-flex" data-menu="default">
         <MdMenu onClick={toggleMenu} className="menuIcon align-self-center"/>
         <h3 className="topTitle align-self-center">Quick Accounts</h3>
       </div>
       <div className="navMenu" data-menu="default">
+        <div className="navMenuIntro"></div>
+        <div style={{ padding: "10px", width:"100%" }}>
+          <div className="navMenuItem d-flex">
+            <MdHome className="mIcon align-self-center"/>
+            <h3 className="mTitle align-self-center">Income</h3>
+          </div>
+        </div>
       </div>
     </div>
   )

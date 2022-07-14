@@ -1,5 +1,7 @@
 :root {
   /* colors */
+  --menuBg: #ECEBF3;
+  --midShadow: 0 2px 5px 0 rgba(0, 0, 0, .25), 0 3px 10px 5px rgba(0, 0, 0, 0.05);
 
   /* dimens */
   --topBarHeight: 70px;
@@ -23,7 +25,7 @@ html {
 }
 
 * {
-  transition: all .2s ease;
+  transition: all .5s ease;
 }
 
 /* --------------App Design-----------*/
@@ -54,15 +56,34 @@ html {
 
 }
 
+.Nav .navCover,
+.Nav .navCover[data-menu="default"],
+.Nav .navCover[data-menu="opened"],
+.Nav .navCover[data-menu="closed"] {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--midIndex);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .Nav .navMenu {
   position: fixed;
   width: var(--navMenuWidth);
   z-index: var(--ultraHighIndex);
   height: 100%;
-  background: var(--success);
+  background: var(--menuBg);
   top: 0;
   left: 0;
   bottom: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: var(--midShadow) !important;
 }
 
 /* integrating navmenu behaviours */
@@ -78,7 +99,42 @@ html {
   left: -500px;
 }
 
+.Nav .navMenu .navMenuIntro {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: calc( 2 * var(--topBarHeight));
+  background-image: url(./assets/banner.jpg);
+  background-position: center;
+  background-size: cover;
+}
 
+.Nav .navMenu .navMenuItem {
+  width: 100%;
+  padding: 10px;
+  height: calc(0.7 * var(--topBarHeight));
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.Nav .navMenu .navMenuItem[data-selected="true"],
+.Nav .navMenu .navMenuItem:hover {
+  color: var(--menuBg);
+  background: var(--dark);
+}
+
+.Nav .navMenu .navMenuItem .mIcon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.Nav .navMenu .navMenuItem .mTitle {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* nav topbar */
 .Nav .topBar {
   position: fixed;
   width: calc( 100vw - var(--navMenuWidth) );
@@ -123,6 +179,10 @@ html {
     left: 0;
     top: 0;
     right: 0;
+  }
+
+  .Nav .navCover[data-menu="opened"] {
+    display: block;
   }
 
   .Nav .topBar[data-menu="default"],
