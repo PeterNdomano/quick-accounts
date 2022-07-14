@@ -49,6 +49,14 @@ html {
   transform: translateY(30vh);
 }
 
+/*------------- MainLoader --------*/
+.MainLoader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: var(--ultraHighIndex);
+  background: var(--dark);
+}
 
 /* -----------Nav Designs----------- */
 
@@ -84,6 +92,14 @@ html {
   padding: 0;
   margin: 0;
   box-shadow: var(--midShadow) !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.Nav .navMenu::-webkit-scrollbar {
+  display: none;
 }
 
 /* integrating navmenu behaviours */
@@ -124,14 +140,14 @@ html {
 }
 
 .Nav .navMenu .navMenuItem .mIcon {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
 }
 
 .Nav .navMenu .navMenuItem .mTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* nav topbar */
