@@ -11,6 +11,7 @@ import { GiReceiveMoney } from 'react-icons/gi';
 import  { AiOutlineCopy } from 'react-icons/ai';
 import { FiSettings } from 'react-icons/fi';
 import { NavApi } from '../App';
+import { isMobile  } from '../Helper';
 
 
 export default function Main(){
@@ -37,8 +38,13 @@ export default function Main(){
       openMenu();
     }
     else if (ind === 'default') {
-      //open on mobile, close on desktop
-      openMenu(); //temporary
+      //open on mobile, close on deskto
+      if(isMobile()) {
+        openMenu();
+      }
+      else {
+        closeMenu();
+      }
     }
     else {
       closeMenu();
