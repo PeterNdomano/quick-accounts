@@ -8,9 +8,9 @@
   --navMenuWidth: 350px;
   --introCardHeight: 200px;
 
-  --ultraHighIndex: 1100;
-  --highIndex: 1000;
-  --midIndex: 100;
+  --ultraHighIndex: 3;
+  --highIndex: 2;
+  --midIndex: 1;
   --lowIndex: 0;
 }
 

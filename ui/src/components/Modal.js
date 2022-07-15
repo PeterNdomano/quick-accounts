@@ -9,7 +9,9 @@ export default function Component(props) {
   const mainContext = useContext(MainContext);
 
   useEffect(() => {
-    console.log('trigger');
+    $('#modal').on('hide.bs.modal', () => {
+      mainContext.setShowModal(false);
+    });
     if(mainContext.showModal) {
       $('#modal').modal().show();
     }
