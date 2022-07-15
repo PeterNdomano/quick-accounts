@@ -31,6 +31,12 @@ html {
 
 /* --------------WIDGETS--------------- */
 
+/* ItemsForm */
+
+.ItemsForm {
+  width: 100%;
+}
+
 /* introCard */
 .introCard {
   margin-bottom: 20px;
@@ -39,6 +45,25 @@ html {
 .introCard .card-body{
   height: var(--introCardHeight);
 }
+
+/* modal */
+.modal {
+
+}
+
+.modal-content {
+
+}
+
+.modal-header {
+
+}
+
+.modal-body {
+  max-height: calc( 100vh - (var(--topBarHeight) * 3)) !important;
+  overflow-y: auto;
+}
+
 
 /* --------------App Design-----------*/
 

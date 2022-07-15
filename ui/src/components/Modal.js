@@ -23,7 +23,7 @@ export default function Component(props) {
         <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div className="modal-content z-depth-1-half">
             <div className="modal-header">
-              <h5 style={{ color:"var(--accentColor)" }} className="modal-title font-bold" id="exampleModalLongTitle">{props.title}</h5>
+              <h5 style={{ color:"var(--accentColor)" }} className="modal-title font-bold" id="exampleModalLongTitle"><b>{props.title}</b></h5>
               <button id="modalCloser" type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" style={{ color: "var(--darkColor)"}}><MdClose size={24} color="var(--secondaryColor)"/></span>
               </button>

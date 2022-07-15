@@ -60,7 +60,7 @@ export default function Component() {
                 <h6 className="align-self-center">Income Records</h6>
                 <button
                   onClick={() => {
-                    mainContext.setModal('Test', <NewIncome/>)
+                    mainContext.setModal('Record New Income', <NewIncome/>)
                   }}
                   className="align-self-center btn btn-dark btn-sm text-light">
                   <MdAdd size={12}/>&nbsp;&nbsp;Add New
