@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { NavApi } from '../App';
+import { MainContext } from '../App';
 import Income from '../body-divs/Income';
 import Expenses from '../body-divs/Expenses';
 import Receivables from '../body-divs/Receivables';
@@ -11,13 +11,13 @@ import { getBodyDiv } from '../Helper';
 
 export default function Main(){
 
-  const navApi = useContext(NavApi);
-  const [ navItem, setNavItem ] = useState(navApi.navItem);
+  const mainContext = useContext(MainContext);
+  const [ navItem, setNavItem ] = useState(mainContext.navItem);
 
 
   useEffect(() => {
-    setNavItem(navApi.navItem)
-  }, [ navApi.navItem ])
+    setNavItem(mainContext.navItem)
+  }, [ mainContext.navItem ])
 
   return (
     <div className="MainBody" data-menu="default">

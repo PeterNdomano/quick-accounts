@@ -5,15 +5,19 @@ import { ToastContainer } from 'react-toastify';
 import Nav from './components/Nav';
 import MainBody from './components/MainBody';
 import MainLoader from './components/MainLoader';
+import QuickAccounts from './models/QuickAccounts';
 
-export const NavApi = createContext(null);
+export const MainContext = createContext(null);
 export default function App() {
   const [ loginStatus, setLoginStatus ] = useState(0);
   const [ ready, setReady ] = useState(false);
   const [ navItem, setNavItem ] = useState("navIncome");
+  const QA = new QuickAccounts({
+    mode: "online"
+  });
 
 
-  const navApi = { navItem, setNavItem }
+  const mainContext = { navItem, setNavItem, QA }
 
   let getLoginStatus = async () => {
     await checkLogin().then(response => {
@@ -40,12 +44,12 @@ export default function App() {
               />
         {
           (loginStatus === 1) ?
-          <NavApi.Provider value={navApi}>
+          <MainContext.Provider value={mainContext}>
             <div className="App">
               <Nav/>
               <MainBody/>
             </div>
-          </NavApi.Provider>
+          </MainContext.Provider>
           :
           <>
             <Login/>

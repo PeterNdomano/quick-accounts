@@ -10,13 +10,13 @@ import {
 import { GiReceiveMoney } from 'react-icons/gi';
 import  { AiOutlineCopy } from 'react-icons/ai';
 import { FiSettings } from 'react-icons/fi';
-import { NavApi } from '../App';
+import { MainContext } from '../App';
 import { isMobile  } from '../Helper';
 
 
 export default function Main(){
 
-  const navApi = useContext(NavApi);
+  const mainContext = useContext(MainContext);
 
   let openMenu = () => {
     document.getElementsByClassName('topBar')[0].dataset['menu'] = 'opened';
@@ -64,11 +64,11 @@ export default function Main(){
   let navSelected = (item) => {
     menuItemsReset();
     document.getElementById(item).dataset['selected'] = "true";
-    navApi.setNavItem(item);
+    mainContext.setNavItem(item);
   }
 
   useEffect(() => {
-    navSelected(navApi.navItem);
+    navSelected(mainContext.navItem);
   }, [])
   return (
     <div className="Nav">
