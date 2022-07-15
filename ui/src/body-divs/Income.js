@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { MainContext } from '../App';
 import { MdAdd } from 'react-icons/md';
+import NewIncome from '../views/NewIncome';
 
 export default function Component() {
 
@@ -44,15 +45,30 @@ export default function Component() {
           <div className="card">
             <div className="card-body">
 
+              Income against time graph
+
+
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-12 col-sm-12">
+          <div className="card">
+            <div className="card-body">
+
               <div style={{ height:"30px" }} className="card-title d-flex justify-content-between">
                 <h6 className="align-self-center">Income Records</h6>
-                <button className="align-self-center btn btn-dark btn-sm text-light">
+                <button
+                  onClick={() => {
+                    mainContext.setModal('Test', <NewIncome/>)
+                  }}
+                  className="align-self-center btn btn-dark btn-sm text-light">
                   <MdAdd size={12}/>&nbsp;&nbsp;Add New
                 </button>
               </div>
               <hr/>
 
-              
+
             </div>
           </div>
         </div>

@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { MainContext } from '../App';
+import $ from 'jquery';
+import { MdClose } from 'react-icons/md';
+
+
 
 export default function Component(props) {
+  const mainContext = useContext(MainContext);
 
+  useEffect(() => {
+    console.log('trigger');
+    if(mainContext.showModal) {
+      $('#modal').modal().show();
+    }
+  }, [mainContext.showModal]);
   return (
     <div>
       {/* modal */}
