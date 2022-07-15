@@ -6,6 +6,7 @@
   /* dimens */
   --topBarHeight: 70px;
   --navMenuWidth: 350px;
+  --introCardHeight: 200px;
 
   --ultraHighIndex: 1100;
   --highIndex: 1000;
@@ -26,6 +27,17 @@ html {
 
 * {
   transition: all .5s ease;
+}
+
+/* --------------WIDGETS--------------- */
+
+/* introCard */
+.introCard {
+  margin-bottom: 20px;
+}
+
+.introCard .card-body{
+  height: var(--introCardHeight);
 }
 
 /* --------------App Design-----------*/
