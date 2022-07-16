@@ -47,9 +47,7 @@ html {
 }
 
 .OneFormItem input {
-  border: none !important;
-  border-radius: 0px;
-  border-bottom: 1px solid var(--darkColor);
+  border-radius: 0px !important;
 }
 
 /* introCard */
