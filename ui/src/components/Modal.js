@@ -14,6 +14,7 @@ export default function Component(props) {
     });
     if(mainContext.showModal) {
       $('#modal').modal().show();
+      $('#modal-body').scrollTop(0);
     }
   }, [mainContext.showModal]);
   return (
@@ -28,7 +29,7 @@ export default function Component(props) {
                 <span aria-hidden="true" style={{ color: "var(--darkColor)"}}><MdClose size={24} color="var(--secondaryColor)"/></span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body" id="modal-body">
               {props.view}
             </div>
           </div>

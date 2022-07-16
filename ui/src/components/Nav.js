@@ -65,6 +65,9 @@ export default function Main(){
     menuItemsReset();
     document.getElementById(item).dataset['selected'] = "true";
     mainContext.setNavItem(item);
+    if(isMobile()) {
+      closeMenu();
+    }
   }
 
   useEffect(() => {

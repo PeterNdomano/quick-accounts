@@ -37,6 +37,21 @@ html {
   width: 100%;
 }
 
+/* OneFormItem */
+.OneFormItem {
+
+}
+
+.OneFormItem label {
+  font-size: 12px;
+}
+
+.OneFormItem input {
+  border: none !important;
+  border-radius: 0px;
+  border-bottom: 1px solid var(--darkColor);
+}
+
 /* introCard */
 .introCard {
   margin-bottom: 20px;

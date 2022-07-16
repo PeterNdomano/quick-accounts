@@ -50,7 +50,7 @@ export default function Component(props) {
             <h6>*Only use this part if you want to specify items for invoice creation otherwise it can be ignored</h6>
           </div>
           <div className="col-md-12 col-sm-12">
-            <ItemsForm/>
+            <ItemsForm reporter={itemsFormReporter} />
           </div>
         </div>
       </form>
