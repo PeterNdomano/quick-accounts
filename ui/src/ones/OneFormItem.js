@@ -11,7 +11,7 @@ export default function Component() {
       ?
       <div className="OneFormItem card">
         <div className="card-body">
-          <div className="row OneFormItem">
+          <div className="row">
             <div className="col-md-3 col-sm-12">
               <div className="form-group">
                 <label>Particular</label>

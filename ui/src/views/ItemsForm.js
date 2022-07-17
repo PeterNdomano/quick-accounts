@@ -3,15 +3,11 @@ import OneFormItem from '../ones/OneFormItem';
 import { MdAdd } from 'react-icons/md';
 
 export default function Component(props) {
-  const [ rows, setRows ] = useState([<OneFormItem/>]);
+  const [ rows, setRows ] = useState([<OneFormItem key={0}/>]);
 
   const addRow = () => {
-    setRows([ ...rows, <OneFormItem/> ])
+    setRows([ ...rows, <OneFormItem key={rows.length} /> ])
   }
-
-  useEffect(() => {
-    console.log('rows changed');
-  }, [rows]);
 
   return (
     <div className="ItemsForm" id="itemsForm">
