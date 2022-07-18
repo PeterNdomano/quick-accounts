@@ -1,9 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import ItemsForm from './ItemsForm';
+import { tellUser } from '../Helper';
+
+export const NewIncomeContext = createContext(null);
 
 export default function Component(props) {
   let itemsFormReporter = (report) => {
     console.log(report);
+  }
+
+  const [ title, setTitle ] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ date, setDate ] = useState(new Date().toISOString().substr(0, 10));
+  const [ amountTobeReceived, setAmountTobeReceived ] = useState(0);
+  const [ amountReceived, setAmountReceived ] = useState(0);
+  const [ isDebt, setIsDebt ] = useState(false);
+
+  let handleAmountTobeReceived = (value) => {
+    if(!isNaN(value) && Number(value) >= 0) {
+      setAmountTobeReceived(value);
+    }
+    else {
+      tellUser('Invalid amount');
+    }
+  }
+
+  let handleAmountReceived = (value) => {
+    if(!isNaN(value) && Number(value) >= 0) {
+      setAmountReceived(value);
+    }
+    else {
+      tellUser('Invalid amount');
+    }
+  }
+
+  useEffect(() => {
+    if(Number(amountTobeReceived) > Number(amountReceived)) {
+      setIsDebt(true);
+    }
+    else {
+      setIsDebt(false);
+    }
+  }, [ amountTobeReceived, amountReceived ])
+
+  const newIncomeContext = {
+
   }
   return (
     <div className="container">
@@ -16,33 +57,36 @@ export default function Component(props) {
         <div className="col-md-6 col-sm-12">
           <div className="form-group">
             <label>Title</label>
-            <input className="form-control" type="text"/>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" type="text"/>
           </div>
           <div className="form-group">
-            <label>Description (Optional)</label>
-            <textarea className="form-control"></textarea>
+            <label>Description & Info (Optional)</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="form-control"></textarea>
           </div>
           <div className="form-group">
             <label>Date</label>
-            <input className="form-control" type="date"/>
+            <input value={date} onChange={(e) => setDate(e.target.value)} className="form-control" type="date"/>
           </div>
         </div>
 
         <div className="col-md-6 col-sm-12">
           <div className="form-group">
             <label>Total Amount To be Received</label>
-            <input className="form-control" type="number"/>
+            <input value={amountTobeReceived} onChange={(e) => handleAmountTobeReceived(e.target.value) } className="form-control"/>
           </div>
           <div className="form-group">
             <label>Amount Currently Received</label>
-            <input className="form-control" type="number"/>
+            <input value={amountReceived} onChange={(e) => handleAmountReceived(e.target.value) } className="form-control"/>
           </div>
-          <div className="form-group">
-            <h6>
-              An account will be created to track payments if amount received is less
-              than total amount to be received
-            </h6>
-          </div>
+          {
+            (isDebt) ?
+            <div className="form-group">
+              <h5 className="text-danger">
+                <b>*An account will be created to track more transactions for this Payment</b>
+              </h5>
+            </div> :
+            <></>
+          }
         </div>
 
         <div className="col-md-12 col-sm-12">
