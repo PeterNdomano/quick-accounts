@@ -44,59 +44,63 @@ export default function Component(props) {
   }, [ amountTobeReceived, amountReceived ])
 
   const newIncomeContext = {
-
+    amountTobeReceived,
+    amountReceived,
   }
   return (
-    <div className="container">
+    <NewIncomeContext.Provider value={newIncomeContext}>
+      <div className="container">
 
-      <div className="row">
+        <div className="row">
 
-        <div className="col-md-12 col-sm-12">
-          <h4>Basic Information</h4>
-        </div>
-        <div className="col-md-6 col-sm-12">
-          <div className="form-group">
-            <label>Title</label>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" type="text"/>
+          <div className="col-md-12 col-sm-12">
+            <h4>Basic Information</h4>
           </div>
-          <div className="form-group">
-            <label>Description & Info (Optional)</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="form-control"></textarea>
-          </div>
-          <div className="form-group">
-            <label>Date</label>
-            <input value={date} onChange={(e) => setDate(e.target.value)} className="form-control" type="date"/>
-          </div>
-        </div>
-
-        <div className="col-md-6 col-sm-12">
-          <div className="form-group">
-            <label>Total Amount To be Received</label>
-            <input value={amountTobeReceived} onChange={(e) => handleAmountTobeReceived(e.target.value) } className="form-control"/>
-          </div>
-          <div className="form-group">
-            <label>Amount Currently Received</label>
-            <input value={amountReceived} onChange={(e) => handleAmountReceived(e.target.value) } className="form-control"/>
-          </div>
-          {
-            (isDebt) ?
+          <div className="col-md-6 col-sm-12">
             <div className="form-group">
-              <h5 className="text-danger">
-                <b>*An account will be created to track more transactions for this Payment</b>
-              </h5>
-            </div> :
-            <></>
-          }
-        </div>
+              <label>Title</label>
+              <input value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" type="text"/>
+            </div>
+            <div className="form-group">
+              <label>Description & Info (Optional)</label>
+              <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="form-control"></textarea>
+            </div>
+            <div className="form-group">
+              <label>Date</label>
+              <input value={date} onChange={(e) => setDate(e.target.value)} className="form-control" type="date"/>
+            </div>
+          </div>
 
-        <div className="col-md-12 col-sm-12">
-          <h4>Particulars</h4>
-          <h6>*Only use this part if you want to specify items for invoice creation otherwise it can be ignored</h6>
-        </div>
-        <div className="col-md-12 col-sm-12">
-          <ItemsForm reporter={itemsFormReporter} />
+          <div className="col-md-6 col-sm-12">
+            <div className="form-group">
+              <label>Total Amount To be Received</label>
+              <input value={amountTobeReceived} onChange={(e) => handleAmountTobeReceived(e.target.value) } className="form-control"/>
+            </div>
+            <div className="form-group">
+              <label>Amount Currently Received</label>
+              <input value={amountReceived} onChange={(e) => handleAmountReceived(e.target.value) } className="form-control"/>
+            </div>
+            {
+              (isDebt) ?
+              <div className="form-group">
+                <h5 className="text-danger">
+                  <b>*An account will be created to track more transactions for this Payment</b>
+                </h5>
+              </div> :
+              <></>
+            }
+          </div>
+
+          <div className="col-md-12 col-sm-12">
+            <h4>Particulars</h4>
+            <h6>*Only use this part if you want to specify items for invoice creation otherwise it can be ignored</h6>
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <ItemsForm />
+          </div>
         </div>
       </div>
-    </div>
+    </NewIncomeContext.Provider>
+
   );
 }

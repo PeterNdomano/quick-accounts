@@ -1,6 +1,7 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { tellUser } from '../Helper';
+import { NewIncomeContext } from '../view/NewIncome';
 
 export default function Component() {
 
@@ -10,6 +11,7 @@ export default function Component() {
   const [ quantity, setQuantity ] = useState(0);
   const [ unitPrice, setUnitPrice ] = useState(0);
   const [ subTotal, setSubTotal ] = useState(0);
+  const newIncomeContext = useContext(NewIncomeContext);
 
   let handleParticular = (value) => {
     if(value.trim().length >= 0) {
@@ -59,6 +61,12 @@ export default function Component() {
   useEffect(() => {
     setSubTotal( Number(quantity) * Number(unitPrice) );
   }, [ quantity, unitPrice ])
+
+  useEffect(() => {
+    newIncomeContext.setAmountTobeReceived(
+      //Number(newIncomeContext.amountTobeReceived) + Number(subTotal)
+    )
+  }, [ subTotal ])
 
   return (
     <>
