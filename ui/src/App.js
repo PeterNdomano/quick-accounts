@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import MainBody from './components/MainBody';
 import MainLoader from './components/MainLoader';
 import Modal from './components/Modal';
+import ConfrimDialog from './components/ConfirmDialog';
 import QuickAccounts from './models/QuickAccounts';
 
 export const MainContext = createContext(null);
@@ -16,6 +17,9 @@ export default function App() {
   const [ showModal, setShowModal ] = useState(false);
   const [ modalView, setModalView ] = useState(<></>);
   const [ modalTitle, setModalTitle ] = useState("");
+  const [ dialogMsg, setDialogMsg ] = useState("");
+  const [ showDialog, setShowDialog ] = useState(false);
+
   const QA = new QuickAccounts({
     mode: "online"
   });
@@ -26,6 +30,11 @@ export default function App() {
     setShowModal(true);
   }
 
+  let setDialog = ( msg ) => {
+    setDialogMsg(msg);
+    setShowDialog(true);
+  }
+
   const mainContext = {
     navItem,
     setNavItem,
@@ -33,6 +42,8 @@ export default function App() {
     showModal,
     setShowModal,
     setModal,
+    setDialog,
+    setShowDialog,
   };
 
 
@@ -67,6 +78,7 @@ export default function App() {
           (loginStatus === 1) ?
           <MainContext.Provider value={mainContext}>
             <div className="App">
+              <ConfirmDialog msg={dialogMsg}/>
               <Modal title={modalTitle} view={modalView}/>
               <Nav/>
               <MainBody/>
