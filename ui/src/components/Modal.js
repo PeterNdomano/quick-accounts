@@ -16,6 +16,9 @@ export default function Component(props) {
       $('#modal').modal().show();
       $('#modal-body').scrollTop(0);
     }
+    else{
+      $('#modalCloser').click();
+    }
   }, [mainContext.showModal]);
   return (
     <div>

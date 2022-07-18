@@ -34,7 +34,7 @@ export default function App() {
   let setDialog = ( msg, onConfirm ) => {
     setDialogMsg(msg);
     setShowDialog(true);
-    setDialogOnConfirm(onConfirm);
+    setDialogOnConfirm(() => onConfirm);
   }
 
   const mainContext = {
@@ -47,6 +47,7 @@ export default function App() {
     setDialog,
     setShowDialog,
     dialogOnConfirm,
+    showDialog,
   };
 
 
@@ -69,6 +70,10 @@ export default function App() {
 
   }, [ showModal ]);
 
+  useEffect(() => {
+
+  }, [ showDialog ]);
+
   return (
     <>
       {
@@ -81,8 +86,8 @@ export default function App() {
           (loginStatus === 1) ?
           <MainContext.Provider value={mainContext}>
             <div className="App">
-              <ConfirmDialog msg={dialogMsg}/>
               <Modal title={modalTitle} view={modalView}/>
+              <ConfirmDialog msg={dialogMsg} onConfirm={dialogOnConfirm}/>
               <Nav/>
               <MainBody/>
             </div>

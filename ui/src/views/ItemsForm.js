@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import OneFormItem from '../ones/OneFormItem';
 import { MdAdd } from 'react-icons/md';
+import { MainContext } from '../App';
+
 
 export default function Component(props) {
   const [ rows, setRows ] = useState([<OneFormItem key={0}/>]);
+  const mainContext = useContext(MainContext);
 
   const addRow = () => {
     setRows([ ...rows, <OneFormItem key={rows.length} /> ])
