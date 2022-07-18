@@ -9,18 +9,18 @@ export default function Component(props) {
   const mainContext = useContext(MainContext);
 
   useEffect(() => {
-    $('#modal').on('hide.bs.modal', () => {
-      mainContext.setShowModal(false);
+    $('#dialog').on('hide.bs.modal', () => {
+      mainContext.setShowDialog(false);
     });
     if(mainContext.showModal) {
-      $('#modal').modal().show();
-      $('#modal-body').scrollTop(0);
+      $('#dialog').modal().show();
+      $('#dialog-body').scrollTop(0);
     }
-  }, [mainContext.showModal]);
+  }, [mainContext.showDialog]);
   return (
     <div>
       {/* modal */}
-      <div className="modal fade" id="modal" tabIndex="-1" role="dialog" aria-labelledby="dialog" aria-hidden="true">
+      <div className="modal fade" id="dialog" tabIndex="-1" role="dialog" aria-labelledby="dialog" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-sm" role="document">
           <div className="modal-content z-depth-2">
             <div className="modal-header">
@@ -31,10 +31,14 @@ export default function Component(props) {
                 <span aria-hidden="true" style={{ color: "var(--darkColor)"}}><MdClose size={24} color="var(--secondaryColor)"/></span>
               </button>
             </div>
-            <div className="modal-body" id="modal-body">
+            <div className="modal-body" id="dialog-body">
               {props.msg}
               <div className="text-right">
-                <button className="btn btn-sm">
+                <button className="btn btn-sm btn-dark" onClick={() => mainContext.dialogOnCOnfirm()} >
+                  Confirm
+                </button>
+                <button className="btn btn-sm btn-danger close" data-dismiss="modal">
+                  Cancel
                 </button>
               </div>
             </div>

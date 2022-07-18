@@ -6,7 +6,7 @@ import Nav from './components/Nav';
 import MainBody from './components/MainBody';
 import MainLoader from './components/MainLoader';
 import Modal from './components/Modal';
-import ConfrimDialog from './components/ConfirmDialog';
+import ConfirmDialog from './components/ConfirmDialog';
 import QuickAccounts from './models/QuickAccounts';
 
 export const MainContext = createContext(null);
@@ -18,6 +18,7 @@ export default function App() {
   const [ modalView, setModalView ] = useState(<></>);
   const [ modalTitle, setModalTitle ] = useState("");
   const [ dialogMsg, setDialogMsg ] = useState("");
+  const [ dialogOnConfirm, setDialogOnConfirm ] = useState(null);
   const [ showDialog, setShowDialog ] = useState(false);
 
   const QA = new QuickAccounts({
@@ -30,9 +31,10 @@ export default function App() {
     setShowModal(true);
   }
 
-  let setDialog = ( msg ) => {
+  let setDialog = ( msg, onConfirm ) => {
     setDialogMsg(msg);
     setShowDialog(true);
+    setDialogOnConfirm(onConfirm);
   }
 
   const mainContext = {
@@ -44,6 +46,7 @@ export default function App() {
     setModal,
     setDialog,
     setShowDialog,
+    dialogOnConfirm,
   };
 
 
