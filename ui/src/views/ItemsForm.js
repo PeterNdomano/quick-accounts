@@ -32,7 +32,7 @@ export default function Component(props) {
       <div id="tableRows" style={{ width:"100%", margin:"0px", padding:"0px" }}>
         {
           (newIncomeContext.tableItems.length === 0) ?
-          <div className="text-center">
+          <div className="text-left">
             <button onClick={createTable} className="btn btn-dark">
               Use Items Table
             </button>

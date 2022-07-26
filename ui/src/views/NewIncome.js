@@ -1,12 +1,14 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
 import ItemsForm from './ItemsForm';
 import { tellUser } from '../Helper';
+import { MainContext } from '../App';
 
 
 export const NewIncomeContext = createContext(null);
 
 export default function Component(props) {
 
+  const mainContext = useContext(MainContext);
 
   const [ title, setTitle ] = useState("");
   const [ description, setDescription ] = useState("");
@@ -66,6 +68,10 @@ export default function Component(props) {
       sum += Number(item.subTotal);
     });
     setAmountTobeReceived(sum);
+  }
+
+  const saveIncome = () => {
+    console.log("saved");
   }
 
   useEffect(() => {
@@ -140,6 +146,18 @@ export default function Component(props) {
           </div>
           <div className="col-md-12 col-sm-12">
             <ItemsForm />
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <hr />
+          </div>
+          <div className="col-md-12 col-sm-12">
+            <button className="btn btn-block text-light"
+              onClick={() => {
+                mainContext.setDialog('This income record will be saved', saveIncome);
+              }}
+              style={{ background:"var(--primaryColor)" }}>
+              Save Income Record
+            </button>
           </div>
         </div>
       </div>
