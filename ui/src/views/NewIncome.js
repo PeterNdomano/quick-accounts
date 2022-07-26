@@ -37,16 +37,22 @@ export default function Component(props) {
 
   const encodeTableItems = () => {
     let tableItems = document.getElementsByClassName('incomeTableItem');
+    let items = [];
     for(let i = 0; i < tableItems.length; i++) {
-      let item = {
-        particular: tableItems.children[0].children[0].children[0].children[0].children[1].value,
-        unit: tableItems.children[0].children[0].children[0].children[0].children[1].value,
-        quantity: tableItems.children[0].children[0].children[0].children[0].children[1].value,
-        unitPrice: tableItems.children[0].children[0].children[0].children[0].children[1].value,
-        subTotal: tableItems.children[0].children[0].children[0].children[0].children[1].value,
-      }
-    }
 
+      let item = {
+        particular: tableItems[i].children[0].children[0].children[0].children[0].children[1].value,
+        unit: tableItems[i].children[0].children[0].children[1].children[0].children[1].value,
+        quantity: tableItems[i].children[0].children[0].children[2].children[0].children[1].value,
+        unitPrice: tableItems[i].children[0].children[0].children[3].children[0].children[1].value,
+        subTotal: tableItems[i].children[0].children[0].children[4].children[0].children[1].value,
+      }
+
+      items.push(item);
+
+    }
+    console.log(items);
+    setTableItems(items);
   }
 
   useEffect(() => {
