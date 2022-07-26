@@ -63,6 +63,10 @@ export default function Component(props) {
     newIncomeContext.setTriggerEncode((trigger) => {return !trigger})
   }, [ particular, unit, quantity, unitPrice, subTotal ])
 
+  useEffect(() => {
+    newIncomeContext.setTriggerEncode((trigger) => {return !trigger})
+  }, [ deleted ])
+
 
 
   return (

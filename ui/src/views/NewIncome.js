@@ -17,16 +17,21 @@ export default function Component(props) {
   const [ tableItems, setTableItems ] = useState([]);
 
 
-  let handleAmountTobeReceived = (value) => {
-    if(!isNaN(value) && Number(value) >= 0) {
-      setAmountTobeReceived(value);
+  const handleAmountTobeReceived = (value) => {
+    if(tableItems.length === 0) {
+      if(!isNaN(value) && Number(value) >= 0) {
+        setAmountTobeReceived(value);
+      }
+      else {
+        tellUser('Invalid amount');
+      }
     }
     else {
-      tellUser('Invalid amount');
+      tellUser('You cannot set this option if rows are filled. Please delete all rows to set this option manually');
     }
   }
 
-  let handleAmountReceived = (value) => {
+  const handleAmountReceived = (value) => {
     if(!isNaN(value) && Number(value) >= 0) {
       setAmountReceived(value);
     }
@@ -88,6 +93,7 @@ export default function Component(props) {
     amountReceived,
     triggerEncode,
     setTriggerEncode,
+    tableItems,
   }
   return (
     <NewIncomeContext.Provider value={newIncomeContext}>
