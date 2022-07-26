@@ -70,8 +70,37 @@ export default function Component(props) {
     setAmountTobeReceived(sum);
   }
 
-  const saveIncome = () => {
-    console.log("saved");
+  const saveIncome = async () => {
+    if(title.trim().length > 0) {
+      if(date.trim().length > 0) {
+        if(amountTobeReceived > 0) {
+          await MainContext.QA.saveIncome({
+            title,
+            description,
+            date,
+            amountTobeReceived,
+            amountReceived,
+            tableItems,
+          }).then((status, msg) => {
+            if(status === 1) {
+              tellUser('Income Record was saved');
+            }
+            else {
+              tellUser(msg);
+            }
+          })
+        }
+        else {
+          tellUser("Please 'Amount To Be Received' cannot be 0");
+        }
+      }
+      else {
+        tellUser("Please specify income record 'Date'");
+      }
+    }
+    else {
+      tellUser("Please specify income record 'Title'");
+    }
   }
 
   useEffect(() => {
