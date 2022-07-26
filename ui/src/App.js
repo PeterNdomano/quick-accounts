@@ -25,16 +25,22 @@ export default function App() {
     mode: "online"
   });
 
-  let setModal = (title, view) => {
+  const setModal = (title, view) => {
     setModalView(view);
     setModalTitle(title);
     setShowModal(true);
   }
 
-  let setDialog = ( msg, onConfirm ) => {
+  const setDialog = ( msg, onConfirm ) => {
     setDialogMsg(msg);
     setShowDialog(true);
     setDialogOnConfirm(() => onConfirm);
+  }
+
+  const clearModal = () => {
+    //this clears modal content
+    setModalView(<></>);
+    setModalTitle("");
   }
 
   const mainContext = {
@@ -48,6 +54,7 @@ export default function App() {
     setShowDialog,
     dialogOnConfirm,
     showDialog,
+    clearModal,
   };
 
 
