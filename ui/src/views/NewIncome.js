@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext, useEffect } from 'react';
 import ItemsForm from './ItemsForm';
 import { tellUser } from '../Helper';
 
+
 export const NewIncomeContext = createContext(null);
 
 export default function Component(props) {
@@ -27,7 +28,7 @@ export default function Component(props) {
       }
     }
     else {
-      tellUser('You cannot set this option if rows are filled. Please delete all rows to set this option manually');
+      tellUser('You cannot use this option if you have created a table. To fill it manually please delete all table rows');
     }
   }
 
@@ -94,13 +95,12 @@ export default function Component(props) {
     triggerEncode,
     setTriggerEncode,
     tableItems,
+    setTableItems,
   }
   return (
     <NewIncomeContext.Provider value={newIncomeContext}>
       <div className="container">
-
         <div className="row">
-
           <div className="col-md-12 col-sm-12">
             <h4>Basic Information</h4>
           </div>
@@ -137,11 +137,6 @@ export default function Component(props) {
               </div> :
               <></>
             }
-          </div>
-
-          <div className="col-md-12 col-sm-12">
-            <h4>Particulars</h4>
-            <h6>*Only use this part if you want to specify items for invoice creation otherwise it can be ignored</h6>
           </div>
           <div className="col-md-12 col-sm-12">
             <ItemsForm />
