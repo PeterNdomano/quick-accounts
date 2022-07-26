@@ -1,9 +1,9 @@
 import React,{ useState, useEffect, useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { tellUser } from '../Helper';
-import { NewIncomeContext } from '../view/NewIncome';
+import { NewIncomeContext } from '../views/NewIncome';
 
-export default function Component() {
+export default function Component(props) {
 
   const [ deleted, setDeleted ] = useState(false);
   const [ particular, setParticular ] = useState("");
@@ -60,20 +60,17 @@ export default function Component() {
 
   useEffect(() => {
     setSubTotal( Number(quantity) * Number(unitPrice) );
-  }, [ quantity, unitPrice ])
+    newIncomeContext.setTriggerEncode((trigger) => {return !trigger})
+  }, [ particular, unit, quantity, unitPrice, subTotal ])
 
-  useEffect(() => {
-    newIncomeContext.setAmountTobeReceived(
-      //Number(newIncomeContext.amountTobeReceived) + Number(subTotal)
-    )
-  }, [ subTotal ])
+
 
   return (
     <>
     {
       (!deleted)
       ?
-      <div className="OneFormItem card">
+      <div className="OneFormItem incomeTableItem card">
         <div className="card-body">
           <div className="row">
             <div className="col-md-3 col-sm-12">

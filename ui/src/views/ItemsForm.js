@@ -5,11 +5,11 @@ import { MainContext } from '../App';
 
 
 export default function Component(props) {
-  const [ rows, setRows ] = useState([<OneFormItem key={0}/>]);
+  const [ rows, setRows ] = useState([<OneFormItem itemId={0} key={0}/>]);
   const mainContext = useContext(MainContext);
 
   const addRow = () => {
-    setRows([ ...rows, <OneFormItem key={rows.length} /> ])
+    setRows([ ...rows, <OneFormItem itemId={rows.length} key={rows.length} /> ])
   }
 
   return (

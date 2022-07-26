@@ -5,16 +5,17 @@ import { tellUser } from '../Helper';
 export const NewIncomeContext = createContext(null);
 
 export default function Component(props) {
-  let itemsFormReporter = (report) => {
-    console.log(report);
-  }
+
 
   const [ title, setTitle ] = useState("");
   const [ description, setDescription ] = useState("");
   const [ date, setDate ] = useState(new Date().toISOString().substr(0, 10));
   const [ amountTobeReceived, setAmountTobeReceived ] = useState(0);
   const [ amountReceived, setAmountReceived ] = useState(0);
+  const [ triggerEncode, setTriggerEncode ] = useState(false);
   const [ isDebt, setIsDebt ] = useState(false);
+  const [ tableItems, setTableItems ] = useState([]);
+
 
   let handleAmountTobeReceived = (value) => {
     if(!isNaN(value) && Number(value) >= 0) {
@@ -34,6 +35,20 @@ export default function Component(props) {
     }
   }
 
+  const encodeTableItems = () => {
+    let tableItems = document.getElementsByClassName('incomeTableItem');
+    for(let i = 0; i < tableItems.length; i++) {
+      let item = {
+        particular: tableItems.children[0].children[0].children[0].children[0].children[1].value,
+        unit: tableItems.children[0].children[0].children[0].children[0].children[1].value,
+        quantity: tableItems.children[0].children[0].children[0].children[0].children[1].value,
+        unitPrice: tableItems.children[0].children[0].children[0].children[0].children[1].value,
+        subTotal: tableItems.children[0].children[0].children[0].children[0].children[1].value,
+      }
+    }
+
+  }
+
   useEffect(() => {
     if(Number(amountTobeReceived) > Number(amountReceived)) {
       setIsDebt(true);
@@ -43,9 +58,19 @@ export default function Component(props) {
     }
   }, [ amountTobeReceived, amountReceived ])
 
+  useEffect(() => {
+    encodeTableItems();
+  }, [ triggerEncode ]);
+
+
+
   const newIncomeContext = {
+    setAmountTobeReceived,
+    setAmountReceived,
     amountTobeReceived,
     amountReceived,
+    triggerEncode,
+    setTriggerEncode,
   }
   return (
     <NewIncomeContext.Provider value={newIncomeContext}>
