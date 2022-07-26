@@ -51,8 +51,15 @@ export default function Component(props) {
       items.push(item);
 
     }
-    console.log(items);
     setTableItems(items);
+  }
+
+  const sumTableItems = () => {
+    let sum = 0;
+    tableItems.forEach((item, i) => {
+      sum += Number(item.subTotal);
+    });
+    setAmountTobeReceived(sum);
   }
 
   useEffect(() => {
@@ -67,6 +74,10 @@ export default function Component(props) {
   useEffect(() => {
     encodeTableItems();
   }, [ triggerEncode ]);
+
+  useEffect(() => {
+    sumTableItems()
+  }, [ tableItems ]);
 
 
 
